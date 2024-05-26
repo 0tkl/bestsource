@@ -19,15 +19,9 @@ jobs:
       run: |
         export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1
         brew update
-        brew install ffmpeg llvm meson vapoursynth xxhash
-
-    - name: Set environment variables for Clang/LLVM
-      run: |
-        echo "CC=/opt/homebrew/opt/llvm/bin/clang" >> $GITHUB_ENV
-        echo "CXX=/opt/homebrew/opt/llvm/bin/clang++" >> $GITHUB_ENV
-        echo "PATH=/opt/homebrew/opt/llvm/bin:$PATH" >> $GITHUB_ENV
+        brew install ffmpeg meson vapoursynth xxhash
 
     - name: Build
       run: |
-        meson setup "-Dcpp_link_args=['-fuse-ld=lld', '-L/opt/homebrew/opt/llvm/lib/c++', '-Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++']" build
+        meson setup build
         ninja -C build
