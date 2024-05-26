@@ -4,7 +4,11 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [macos-12, macos-13, macos-14]
 
     steps:
     - uses: actions/checkout@v4
@@ -23,5 +27,5 @@ jobs:
 
     - name: Build
       run: |
-        meson setup build
+        CFLAGS="-Wall -Wextra -Wpedantic" CXXFLAGS="-Wall -Wextra -Wpedantic" meson setup build
         ninja -C build
