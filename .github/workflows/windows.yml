@@ -36,6 +36,11 @@ jobs:
           mingw-w64-ucrt-x86_64-vulkan-headers
           mingw-w64-ucrt-x86_64-xxhash
 
+    - name: where is grep on Windows
+      run: |
+        where /r C:\ grep
+        where /r D:\ grep
+
     - name: Install nv-codec-headers
       run: |
         git clone https://github.com/FFmpeg/nv-codec-headers.git --depth 1
