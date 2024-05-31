@@ -37,6 +37,7 @@ jobs:
           mingw-w64-ucrt-x86_64-xxhash
 
     - name: where is grep on Windows
+      shell: pwsh
       run: (Get-Command grep).Path
 
     - name: Install nv-codec-headers
