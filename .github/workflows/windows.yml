@@ -15,12 +15,6 @@ jobs:
       with:
         submodules: recursive
 
-    - name: where is grep on Windows
-      shell: cmd
-      run: |
-        where /r C:\ grep
-        where /r D:\ grep
-
     - uses: msys2/setup-msys2@v2
       with:
         msystem: UCRT64
@@ -41,6 +35,9 @@ jobs:
           mingw-w64-ucrt-x86_64-vapoursynth
           mingw-w64-ucrt-x86_64-vulkan-headers
           mingw-w64-ucrt-x86_64-xxhash
+
+    - name: where is grep on Windows
+      run: (Get-Command grep).Path
 
     - name: Install nv-codec-headers
       run: |
