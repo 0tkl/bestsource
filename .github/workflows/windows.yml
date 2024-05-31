@@ -15,6 +15,10 @@ jobs:
       with:
         submodules: recursive
 
+    - name: get env path
+      shell: pwsh
+      run: (Get-ChildItem Env:\Path).Value.Replace(';', "`n")
+
     - uses: msys2/setup-msys2@v2
       with:
         msystem: UCRT64
